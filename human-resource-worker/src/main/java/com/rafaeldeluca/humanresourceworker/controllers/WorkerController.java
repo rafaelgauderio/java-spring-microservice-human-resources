@@ -20,29 +20,34 @@ import com.rafaeldeluca.humanresourceworker.repositories.WorkerRepository;
 public class WorkerController {
 
 	private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
-	
+
 	@Autowired
 	private Environment environment;
-	
+
 	@Autowired
 	private WorkerRepository workerRepository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Worker>> findAllWorkers () {
+	public ResponseEntity<List<Worker>> findAllWorkers() {
 		List<Worker> workerList = workerRepository.findAll();
 		return ResponseEntity.ok(workerList);
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findWorkerById(@PathVariable Long id) {
-		
+
+		/*
+		try {
+			Thread.sleep(4000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
+	
 		logger.info("LOCAL SERVER PORT: " + environment.getProperty("local.server.port"));
-		
+
 		Worker workerOptional = workerRepository.findById(id).get();
 		return ResponseEntity.ok(workerOptional);
 	}
-	
-	
-	
 
 }
