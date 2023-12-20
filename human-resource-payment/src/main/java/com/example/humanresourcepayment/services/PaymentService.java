@@ -1,7 +1,6 @@
 package com.example.humanresourcepayment.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,10 +9,7 @@ import com.example.humanresourcepayment.entities.Payment;
 import com.example.humanresourcepayment.entities.Worker;
 
 @Service
-public class PaymentService {
-
-	@Value("${hr-worker.host}")
-	private String workerHost;
+public class PaymentService {	
 
 	@Autowired
 	private RestTemplate restTemplate;
