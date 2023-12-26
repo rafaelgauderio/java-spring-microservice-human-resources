@@ -1,15 +1,27 @@
 package com.example.humanhrconfigserver;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 @EnableConfigServer
 @SpringBootApplication
-public class HumanResourceConfigServerApplication {
+public class HumanResourceConfigServerApplication implements CommandLineRunner {
+	
+	@Value("${spring.cloud.config.server.git.username}")
+	private String githubUsername;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HumanResourceConfigServerApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		
+		System.out.println("USERNAME =  " +  githubUsername);
+		
 	}
 
 }
