@@ -22,7 +22,7 @@ public class HumanResourceHrUserApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		System.out.println("BCryptPasswordEncoder = " + bcryptPasswordEncoder.encode("microsservico") );
+		//System.out.println("BCryptPasswordEncoder = " + bcryptPasswordEncoder.encode("microsservico") );
 		
 	}
 
