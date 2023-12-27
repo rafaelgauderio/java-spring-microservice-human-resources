@@ -14,5 +14,4 @@ public interface UserFeignClient {
 	
 	@GetMapping(value = "/find")
 	ResponseEntity<User> findByEmail(@RequestParam String email);	
-
 }
