@@ -17,7 +17,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String [] CLIENT_ROUTES = {"/hr-worker/**"};
 	
-	private static final String [] ADMIN_ROUTES = {"/hr-user/**", "/hr-payment/**"};
+	private static final String [] ADMIN_ROUTES = {"/hr-user/**", "/hr-payment/** ", "/actuator/**", "/hr-worker/actuator/**", "/hr-oauth/actuator/**"};
 	
 	@Autowired
 	private JwtTokenStore jwtTokenStore;
