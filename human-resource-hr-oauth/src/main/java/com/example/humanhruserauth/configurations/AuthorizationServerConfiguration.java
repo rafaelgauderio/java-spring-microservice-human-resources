@@ -1,6 +1,7 @@
 package com.example.humanhruserauth.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+	
+	@Value("${oauth.client.name}")
+	private String clientName;
+	
+	@Value("${oauth.client.secret}")
+	private String clientSecret;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -35,7 +42,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clientConfigurer) throws Exception {
-		clientConfigurer.inMemory().withClient("myappname").secret(bCryptPasswordEncoder.encode("myappsecret"))
+		clientConfigurer.inMemory().withClient(clientName).secret(bCryptPasswordEncoder.encode(clientSecret))
 				.scopes("write", "read").authorizedGrantTypes("password").accessTokenValiditySeconds(86400); // 60*60*24
 																												// = 24
 																												// horas
