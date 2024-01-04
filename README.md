@@ -23,7 +23,7 @@ ADD ./target/hr-config-server-0.0.1-SNAPSHOT.jar hr-config-server.jar
 ENTRYPOINT ["java","-jar","/hr-config-server.jar"]
 ``` 
 ```
-mvnw clean package
+./mvnw clean package
 
 docker build -t hr-config-server:v1 .
 
@@ -80,15 +80,15 @@ docker run -P --network hr-net hr-user:v1
 ```
 FROM openjdk:11
 VOLUME /tmp
-ADD ./target/hr-payroll-0.0.1-SNAPSHOT.jar hr-payroll.jar
-ENTRYPOINT ["java","-jar","/hr-payroll.jar"]
+ADD ./target/hr-payment-0.0.1-SNAPSHOT.jar hr-payment.jar
+ENTRYPOINT ["java","-jar","/hr-payment.jar"]
 ``` 
 ```
 ./mvnw clean package -DskipTests
 
-docker build -t hr-payroll:v1 .
+docker build -t hr-payment:v1 .
 
-docker run -P --network hr-net hr-payroll:v1
+docker run -P --network hr-net hr-payment:v1
 ```
 
 ## hr-oauth
@@ -119,7 +119,7 @@ ENTRYPOINT ["java","-jar","/hr-api-gateway-zuul.jar"]
 
 docker build -t hr-api-gateway-zuul:v1 .
 
-docker run -p 8765:8765 --name hr-api-gateway-zuul --network hr-net hr-api-gateway-zuul:v1
+docker run -p 8765:8765 --name hr-api-gateway --network hr-net hr-api-gateway:v1
 ```
 
 ## Alguns comandos Docker
